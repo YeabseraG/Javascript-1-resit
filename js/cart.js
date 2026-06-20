@@ -27,3 +27,13 @@ export function addToCart(product) {
 
   saveCart(cart);
 }
+
+
+export function removeFromCart(id) {
+  const cart = getCart().filter((item) => item.id !== id);
+  saveCart(cart);
+}
+
+export function clearCart() {
+  localStorage.removeItem(CART_KEY);
+}
