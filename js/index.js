@@ -10,13 +10,31 @@ let allProducts = [];
 async function init() {
   try {
     allProducts = await fetchProducts();
+    renderHero(allProducts[0]);
     renderGenreOptions(allProducts);
     renderProducts(allProducts);
   } catch (error) {
-    errorContainer.textContent = "Something went wrong while loading.";
+    errorContainer.textContent = "Something went wrong while loading games.";
   } finally {
     loader.style.display = "none";
   }
+}
+
+function renderHero(product) {
+  const hero = document.createElement("section");
+  hero.classList.add("hero");
+
+  hero.innerHTML = `
+    <div class="hero-content">
+      <p class="eyebrow">Featured Game</p>
+      <h1>${product.title}</h1>
+      <p>${product.description}</p>
+      <a href="/product/index.html?id=${product.id}">View Featured Game</a>
+    </div>
+    <img src="${product.image.url}" alt="${product.image.alt}" />
+  `;
+
+  document.querySelector("main").prepend(hero);
 }
 
 function renderGenreOptions(products) {
@@ -35,14 +53,20 @@ function renderProducts(products) {
 
   products.forEach((product) => {
     productsContainer.innerHTML += `
-      <article class="product-card">
-        <img src="${product.image.url}" alt="${product.image.alt}" />
-        <h2>${product.title}</h2>
-        <p>${product.genre}</p>
-        <p>$${product.discountedPrice}</p>
-        <a href="/product/index.html?id=${product.id}">View product</a>
-      </article>
-    `;
+  <a
+    class="product-card"
+    href="/product/index.html?id=${product.id}"
+  >
+    <img src="${product.image.url}" alt="${product.image.alt}" />
+
+    <div class="product-card-content">
+      <p class="genre">${product.genre}</p>
+      <h2>${product.title}</h2>
+      <p class="description">${product.description}</p>
+      <p class="price">$${product.discountedPrice}</p>
+    </div>
+  </a>
+`;
   });
 }
 

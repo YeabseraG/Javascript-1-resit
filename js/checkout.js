@@ -24,18 +24,23 @@ function renderCart() {
   const cartItemsHtml = cart
     .map((product) => {
       return `
-        <article class="cart-item">
-          <img src="${product.image.url}" alt="${product.image.alt}" />
-          <div>
+      <article class="cart-item">
+            <a class="cart-product-link" href="/product/index.html?id=${product.id}">
+            <img src="${product.image.url}" alt="${product.image.alt}" />
+        </a>
+
+        <div>
+            <a class="cart-title-link" href="/product/index.html?id=${product.id}">
             <h2>${product.title}</h2>
-            <p>Price: $${product.price}</p>
-            <p>Quantity: ${product.quantity}</p>
-            <button class="remove-button" data-id="${product.id}">
-              Remove
-            </button>
-          </div>
-        </article>
-      `;
+        </a>
+        <p>Price: $${product.price}</p>
+        <p>Quantity: ${product.quantity}</p>
+        <button class="remove-button" data-id="${product.id}">
+            Remove
+       </button>
+      </div>
+     </article>
+`;
     })
     .join("");
 

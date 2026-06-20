@@ -28,26 +28,56 @@ function renderProduct(product) {
   document.title = `GameHub | ${product.title}`;
 
   productContainer.innerHTML = `
-    <article class="product-detail">
-      <img src="${product.image.url}" alt="${product.image.alt}" />
-      <div>
-        <h1>${product.title}</h1>
-        <p>${product.description}</p>
-        <p><strong>Genre:</strong> ${product.genre}</p>
-        <p><strong>Age rating:</strong> ${product.ageRating}</p>
-        <p><strong>Released:</strong> ${product.released}</p>
-        <p><strong>Price:</strong> $${product.discountedPrice}</p>
+  <article class="product-detail">
+    <img src="${product.image.url}" alt="${product.image.alt}" />
+
+    <div class="product-info">
+      <p class="genre">${product.genre}</p>
+      <h1>${product.title}</h1>
+
+      <p class="product-description">${product.description}</p>
+
+      <div class="product-meta">
+        <div>
+          <span>Age rating</span>
+          <strong>${product.ageRating}</strong>
+        </div>
+        <div>
+          <span>Released</span>
+          <strong>${product.released}</strong>
+        </div>
+        <div>
+          <span>Genre</span>
+          <strong>${product.genre}</strong>
+        </div>
+      </div>
+
+      <div class="purchase-box">
+        <p>Price</p>
+        <strong>$${product.discountedPrice}</strong>
         <button id="addToCart">Add to cart</button>
       </div>
-    </article>
-  `;
+    </div>
+  </article>
+`;
 
   const addToCartButton = document.querySelector("#addToCart");
 
   addToCartButton.addEventListener("click", () => {
     addToCart(product);
-    addToCartButton.textContent = "Added to cart";
-  });
+    showToast(`${product.title} added to cart`);
+});
+}
+
+function showToast(message) {
+  const toast = document.querySelector("#toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
 }
 
 function showError(message) {
