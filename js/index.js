@@ -29,7 +29,7 @@ function renderHero(product) {
       <p class="eyebrow">Featured Game</p>
       <h1>${product.title}</h1>
       <p>${product.description}</p>
-      <a href="/product/index.html?id=${product.id}">View Featured Game</a>
+      <a href="product/index.html?id=${product.id}">View Featured Game</a>
     </div>
     <img src="${product.image.url}" alt="${product.image.alt}" />
   `;
@@ -55,7 +55,7 @@ function renderProducts(products) {
     productsContainer.innerHTML += `
   <a
     class="product-card"
-    href="/product/index.html?id=${product.id}"
+    href="product/index.html?id=${product.id}"
   >
     <img src="${product.image.url}" alt="${product.image.alt}" />
 

@@ -25,12 +25,12 @@ function renderCart() {
     .map((product) => {
       return `
       <article class="cart-item">
-            <a class="cart-product-link" href="/product/index.html?id=${product.id}">
+            <a class="cart-product-link" href="product/index.html?id=${product.id}">
             <img src="${product.image.url}" alt="${product.image.alt}" />
         </a>
 
         <div>
-            <a class="cart-title-link" href="/product/index.html?id=${product.id}">
+            <a class="cart-title-link" href="product/index.html?id=${product.id}">
             <h2>${product.title}</h2>
         </a>
         <p>Price: $${product.price}</p>
@@ -52,7 +52,7 @@ function renderCart() {
     <section class="cart-summary">
       <h2>Order summary</h2>
       <p><strong>Total:</strong> $${totalPrice.toFixed(2)}</p>
-      <a class="checkout-button" href="/checkout/confirmation/index.html">
+      <a class="checkout-button" href="checkout/confirmation/index.html">
         Complete checkout
       </a>
     </section>
