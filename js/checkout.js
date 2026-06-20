@@ -24,23 +24,31 @@ function renderCart() {
   const cartItemsHtml = cart
     .map((product) => {
       return `
-      <article class="cart-item">
-            <a class="cart-product-link" href="../product/index.html?id=${product.id}">
+        <article class="cart-item">
+          <a
+            class="cart-product-link"
+            href="/Javascript-1-resit/product/index.html?id=${product.id}"
+          >
             <img src="${product.image.url}" alt="${product.image.alt}" />
-        </a>
+          </a>
 
-        <div>
-            <a class="cart-title-link" href="../product/index.html?id=${product.id}">
-            <h2>${product.title}</h2>
-        </a>
-        <p>Price: $${product.price}</p>
-        <p>Quantity: ${product.quantity}</p>
-        <button class="remove-button" data-id="${product.id}">
-            Remove
-       </button>
-      </div>
-     </article>
-`;
+          <div>
+            <a
+              class="cart-title-link"
+              href="/Javascript-1-resit/product/index.html?id=${product.id}"
+            >
+              <h2>${product.title}</h2>
+            </a>
+
+            <p>Price: $${product.price}</p>
+            <p>Quantity: ${product.quantity}</p>
+
+            <button class="remove-button" data-id="${product.id}">
+              Remove
+            </button>
+          </div>
+        </article>
+      `;
     })
     .join("");
 
@@ -52,13 +60,16 @@ function renderCart() {
     <section class="cart-summary">
       <h2>Order summary</h2>
       <p><strong>Total:</strong> $${totalPrice.toFixed(2)}</p>
-      <a class="checkout-button" href="../checkout/confirmation/index.html">
+
+      <a
+        class="checkout-button"
+        href="/Javascript-1-resit/checkout/confirmation/index.html"
+      >
         Complete checkout
       </a>
     </section>
   `;
 
-  // The cart should be re-rendered after removing an item, so the buttons need their event listeners added again each time the function runs.
   document.querySelectorAll(".remove-button").forEach((button) => {
     button.addEventListener("click", handleRemoveClick);
   });
